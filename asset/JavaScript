@@ -56,14 +56,12 @@ $('#city-search-form').on('submit', function (event) {
     }
 });
 
-// Event listener for clicking on a city in the search history
 $('#search-history').on('click', 'li', function () {
     const cityName = $(this).text();
-    // Call the getWeatherData function to fetch weather data for the city
+    
     getWeatherData(cityName);
 });
 
-// Load search history on page load
 $(document).ready(function () {
     loadSearchHistory();
 });
