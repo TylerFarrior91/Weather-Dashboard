@@ -1,0 +1,121 @@
+/* Reset some default styles for consistency */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set the font family and default font size */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Styling for header section */
+header {
+  background-color: #1f38df;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+/* Styling for search form */
+#city-search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+#city-input {
+  padding: 5px;
+  font-size: 16px;
+  width: 200px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0f6ecb;
+}
+
+/* Styling for current weather section */
+#current-weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+}
+
+#current-weather h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#current-weather img {
+  width: 100px;
+}
+
+/* Styling for forecast section */
+#forecast {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.forecast-card {
+  width: 150px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+/* Styling for search history section */
+#search-history {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.search-item {
+  padding: 5px;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+  #forecast {
+    justify-content: center;
+  }
+
+  .forecast-card {
+    width: 200px;
+  }
+}

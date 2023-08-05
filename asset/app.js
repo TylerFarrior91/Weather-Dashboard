@@ -1,10 +1,7 @@
-// app.js
-// Your JavaScript code goes here
-
 // Function to make API call to OpenWeatherMap
 function getWeatherData(cityName) {
     // Use the 5 Day Weather Forecast API URL with your API key and city name
-    const apiKey = 'YOUR_API_KEY';
+    const apiKey = '7a19fc7836f7d758a209d24a70da2190';
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${apiKey}`;
 
     // Make the API call using jQuery's AJAX method
@@ -16,13 +13,14 @@ function getWeatherData(cityName) {
             // Process the weather data and update the UI
             // You can access the weather data in the 'data' variable
             // e.g., data.list[0] will give you the first forecast data point
+            console.log(data);
         },
         error: function (error) {
             // Handle API call errors here
+            console.log(error)
         }
     });
 }
-
 // Function to display the current weather conditions
 function displayCurrentWeather(weatherData) {
     // Update the UI to show the current weather conditions
@@ -36,6 +34,13 @@ function displayForecast(forecastData) {
 // Function to save city in the search history
 function saveCityInHistory(cityName) {
     // Save the city name in localStorage
+    console.log(localStorage.getItem("cities"))
+    if (localStorage.getItem("cities")===null) {
+        localStorage.setItem("cities", cityName)
+    } else {
+        localStorage.setItem("cities", JSON.stringify([localStorage.getItem("cities"), cityName]));
+        console.log(localStorage.getItem("cities"));
+    }
 }
 
 // Function to load search history from localStorage and display it
