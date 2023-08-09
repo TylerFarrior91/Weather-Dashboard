@@ -7,11 +7,16 @@ var temp = document.querySelector(".temp")
 var hum = document.querySelector(".hum")
 var wind = document.querySelector(".wind")
 var forecastCard = document.querySelectorAll(".forecastCard")
+var searchHistory = document.querySelector(".search-history")
 
 submit.addEventListener("click", function () {
+    var history = JSON.parse(localStorage.getItem("history")) || []
     var cityName = cityInput.value
     getWeatherData(cityName)
     getForecastData(cityName)
+    history.push(cityName)
+    localStorage.setItem("history", JSON.stringify(history))
+    renderHistory()
 })
 
 function getWeatherData(cityName) {
@@ -67,3 +72,20 @@ function getForecastData(cityName) {
             }
         })
 }
+
+function renderHistory() {
+    searchHistory.innerHTML = ""
+    var historyData = JSON.parse(localStorage.getItem("history")) || []
+    for (let i = 0; i < historyData.length; i++) {
+        var btn = document.createElement("button")
+        btn.innerHTML = historyData[i]
+        searchHistory.append(btn)
+        btn.addEventListener("click", function (event) {
+            var cityValue = event.target.innerHTML
+            getWeatherData(cityValue)
+            getForecastData(cityValue)
+        })
+    }
+}
+
+renderHistory()
