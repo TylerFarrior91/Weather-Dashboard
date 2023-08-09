@@ -6,10 +6,12 @@ var icon = document.querySelector(".icon")
 var temp = document.querySelector(".temp")
 var hum = document.querySelector(".hum")
 var wind = document.querySelector(".wind")
+var forecastCard = document.querySelectorAll(".forecastCard")
 
 submit.addEventListener("click", function () {
     var cityName = cityInput.value
     getWeatherData(cityName)
+    getForecastData(cityName)
 })
 
 function getWeatherData(cityName) {
@@ -25,10 +27,43 @@ function getWeatherData(cityName) {
             var year = date.getFullYear()
             city.innerHTML = data.name + " - " + month + "/" + day + "/" + year
             icon.setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png")
-            icon.setAttribute("alt",  data.weather[0].description)
+            icon.setAttribute("alt", data.weather[0].description)
             temp.innerHTML = "Temp: " + data.main.temp + "&#176F"
             hum.innerHTML = "Humidity: " + data.main.humidity + "%"
             wind.innerHTML = "Wind: " + data.wind.speed + "mph"
         })
 }
 
+function getForecastData(cityName) {
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`)
+        .then(function (res) {
+            return res.json()
+        })
+        .then(function (data) {
+            console.log(data)
+            for (let i = 0; i < forecastCard.length; i++) {
+                forecastCard[i].innerHTML = ""
+                var index = i * 8 + 4
+                var date = new Date(data.list[index].dt * 1000)
+                var day = date.getDate()
+                var month = date.getMonth() + 1
+                var year = date.getFullYear()
+                const h1 = document.createElement('h1')
+                const img = document.createElement("img")
+                const p1 = document.createElement('p')
+                const p2 = document.createElement('p')
+                const p3 = document.createElement('p')
+                h1.innerHTML = month + "/" + day + "/" + year
+                img.setAttribute("src", "https://openweathermap.org/img/wn/" + data.list[index].weather[0].icon + "@2x.png")
+                img.setAttribute("alt", data.list[index].weather[0].description)
+                p1.innerHTML = "Temp: " + data.list[index].main.temp + "&#176F"
+                p2.innerHTML = "Humidity: " + data.list[index].main.humidity + "%"
+                p3.innerHTML = "Wind: " + data.list[index].wind.speed + "mph"
+                forecastCard[i].append(h1)
+                forecastCard[i].append(img)
+                forecastCard[i].append(p1)
+                forecastCard[i].append(p2)
+                forecastCard[i].append(p3)
+            }
+        })
+}

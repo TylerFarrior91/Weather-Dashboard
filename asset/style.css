@@ -30,3 +30,8 @@ button {
 #weatherInfo {
   margin-top: 20px;
 }
+
+.forecast {
+  display: flex;
+  justify-content: space-evenly;
+}
