@@ -7,6 +7,7 @@ Start by typing a city of your choosing, then be prompted with information inclu
 * JavaScript
 * Weather-API
 ### links
-[Live URL] ()
-
+[GitHub URL](https://github.com/TylerFarrior91/Weather-Dashborad)\
+[Live URL](file:///Users/tylerfarrior/Desktop/Weather%20APP/index.html)\
 #### screenshots
+![screenshot](![Alt text](<images/Screenshot 2023-08-09 at 8.59.39 PM.png>)
